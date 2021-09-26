@@ -1,0 +1,18 @@
+{
+	"gitlabProjects": [
+		{
+			"shortName": "pfn",
+			"fullName": "project-full-name",
+			"id": 11111111,
+			"isDefault": true
+		}
+	],
+	"gitlab": {
+		"token": "private_token"
+	},
+	"jira": {
+		"name": "worktech",
+		"token": "jira_token",
+		"email": "email@gmail.com"
+	}
+}

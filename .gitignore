@@ -1,0 +1,11 @@
+# build
+build
+ws.tgz
+
+# packages
+node_modules
+yarn.lock
+yarn-error.log
+
+# config
+config.local.json
