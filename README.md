@@ -4,7 +4,7 @@
 
 ### Использование утилиты
 ```bash
-$ ws -j WS-3 -m -c
+$ wrsp -j WS-3 -m -c
 ```
 
 Утилита найдет в jire задачу с ключем WS-3 (```-j WS-3```), создаст в гитлабе merge с описанием по задаче (```-m```) и создаст коммент со ссылкой на мердж в задаче в jira (```-c```). Подробнее про данный и другой функционал в разделе **опции и команды**.
@@ -13,13 +13,13 @@ $ ws -j WS-3 -m -c
 
 С помощью NPM:
 ```bash
-$ npm install ws -g
+$ npm install wrsp -g
 ```
 
 ### Конфигурация утилиты
 
 ```bash
-$ ws c
+$ wrsp c
 ```
 
 После ввода команды в консоли нужно будет поочередно указать:
@@ -44,7 +44,7 @@ $ ws c
 В утилиту добавлены несколько команд, для каждой команды свои опции
 
 ```bash
-ws -h
+wrsp -h
 ```
 ```txt
 '--help', '-h' {Boolean} - help - view commands and args
@@ -53,12 +53,12 @@ ws -h
 'work' {Boolean} - work with tasks in jira and git
 ```
 
-### ws work
+### wrsp work
 
 Команда используется по умолчания, указывать не обязательно.
 
 ```bash
-ws work -h
+wrsp work -h
 ```
 ```txt
 '--jira-task', '-j' {String} - name of current task into jira (for ex NT-2020)
@@ -75,31 +75,31 @@ ws work -h
 *Проект по умолчанию* - `workspace`
 
 ```bash
-ws -j WS-1 -m -t WS-1 -s WS-1_fix -c
+wrsp -j WS-1 -m -t WS-1 -s WS-1_fix -c
 ```
 Утилита создаст мердж (`-m`) из ветки с ключем WS-1_fix (`-s WS-1_fix`) в ветку WS-1 (`-t WS-1`), описание к мерджу построится на основе задачи из jira с ключем WS-1 (`-j WS-1`). В задачу в jira добавится комментарий со ссылкой на merge (`-c`).
 
 ```bash
-ws -j WS-1 -m -t main
+wrsp -j WS-1 -m -t main
 ```
 Утилита создаст мердж (`-m`) из ветки с ключем WS-1 (`-j WS-1`) в ветку main (`-t main`), описание к мерджу построится на основе задачи из jira с ключем WS-1 (`-j WS-1`).
 
 ```bash
-ws -j WS-1 -m -t main
+wrsp -j WS-1 -m -t main
 ```
 Утилита создаст мердж (`-m`) из ветки с ключем WS-1 (`-j WS-1`) в ветку main (`-t main`), описание к мерджу построится на основе задачи из jira с ключем WS-1 (`-j WS-1`).
 
 ```bash
-ws -j NG-1 -p ng
+wrsp -j NG-1 -p ng
 ```
 Утилита выведет в консоль ссылку на задачу в jira и список merge request-ов у которых в качестве source branch указана ветка WS-1 (`-j NG-1`, *опция `--source-brance` по умолчанию равна опции `-j`*) для проекта, у которого в качестве краткого имени указано ng (`-p ng`, *см. раздел конфигурации*).
 
-### ws report
+### wrsp report
 
 Команда для получения отчетов.
 
 ```bash
-ws report -h
+wrsp report -h
 ```
 ```txt
 '--variant', '-v' {String} - list | points
