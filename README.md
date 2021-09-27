@@ -109,8 +109,11 @@ wrsp work -h
 Сгенерированный комментарий выглядит следующим образом:
 
 > [WS-3](https://vordgi.atlassian.net/browse/WS-3)
+> 
 > creator: Savelyev Alexander
+> 
 > assignee: Savelyev Alexander
+> 
 > issue type: Task
 
 Если у вас есть вопросы и пожелания относительно комментариев - пожалуйста, оставьте обратную связь в [задаче](https://github.com/vordgi/workspace/issues/2).
