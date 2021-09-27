@@ -1,7 +1,7 @@
 {
   "name": "wrsp",
-  "version": "3.1.6",
-  "description": "Workspace",
+  "version": "3.1.8",
+  "description": "Workspace - CLI to improve DX when working with gitlab + jira",
   "main": "./build/src/index.js",
   "bin": "./build/src/index.js",
   "devDependencies": {
@@ -29,5 +29,26 @@
     "cacache": "15.0.5",
     "inquirer": "8.0.0",
     "node-fetch": "2.6.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/vordgi/workspace.git"
+  },
+  "author": {
+    "name": "Savelyev Alexander",
+    "email": "sasha2822222@gmail.com",
+    "url": "https://github.com/vordgi/"
+  },
+  "keywords": [
+    "workspace",
+    "console",
+    "command",
+    "dx",
+    "jira",
+    "gitlab",
+    "developer experience",
+    "utility",
+    "tools",
+    "cli"
+  ]
 }
