@@ -19,8 +19,7 @@ const getTasks: GetTasks = async ({authToken, jiraWorkspace}) => {
 		},
 		"method": "POST",
 		body: JSON.stringify({
-			"jql": `assignee in (currentUser()) AND project = MRT AND resolved >= ${prevDateString} AND resolved <= ${curDateString} AND status = Resolved ORDER BY created ASC`,
-			// "jql": 'assignee in (currentUser()) AND project = MRT AND "Dev finish date[Date]" >= 2021-05-23 AND status = Resolved ORDER BY created ASC',
+			"jql": `assignee in (currentUser()) AND resolved >= ${prevDateString} AND resolved <= ${curDateString} AND status = Resolved ORDER BY created ASC`,
 			"maxResults": 100,
 			"fieldsByKeys": false,
 			"fields": [
