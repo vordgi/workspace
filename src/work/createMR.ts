@@ -1,14 +1,14 @@
-import getVariables from "./variables";
+import getVariables from './variables';
 import fetch from 'node-fetch';
 
 interface JiraTaskType {
 	fields: {
-		creator: {displayName: string},
-		description: {content: any}
-		summary: string,
-		issuetype: {name: string},
-		assignee: {displayName: string},
-	},
+		creator: {displayName: string};
+		description: {content: any};
+		summary: string;
+		issuetype: {name: string};
+		assignee: {displayName: string};
+	};
 }
 const createMR = async (jiraTaskObj:JiraTaskType) => {
 	const { jiraTask, sourceBranch, jiraWorkspace, project, gitlabToken, targetBranch } = await getVariables();
@@ -39,7 +39,7 @@ issue type: ${jiraTaskObj.fields.issuetype.name}`
 	if (MRBody.web_url) {
 		console.log(`MR: ${MRBody.web_url}`);
 	} else {
-		console.log("Can't create merge");
+		console.log('Can\'t create merge');
 		process.exit();
 	}
 	return MRBody;

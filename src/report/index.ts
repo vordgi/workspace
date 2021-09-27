@@ -17,12 +17,12 @@ const report = async () => {
 	}
 
 	if (!args['--variant']) {
-		console.log("   Error: You didn't choose report variant. Please add with -v flag");
+		console.log('   Error: You didn\'t choose report variant. Please add with -v flag');
 		process.exit();
 	}
 
 	if (args['--variant'] !== 'list' && args['--variant'] !== 'points' ) {
-		console.log("   Error: Please, choose valid report variant. Use --help flag for more info");
+		console.log('   Error: Please, choose valid report variant. Use --help flag for more info');
 		process.exit();
 	}
 	if (args['--variant'] === 'list') {

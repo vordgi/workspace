@@ -6,7 +6,6 @@ import getVariables, { args } from './variables';
 import getTask from './getTask';
 import getMRs from './getMRs';
 
-
 const work = async () => {
 	if (args['--help']) {
 		console.log(`
@@ -22,19 +21,19 @@ const work = async () => {
 	}
 
 	if (!args['--jira-task']) {
-		console.log("   Error: You didn't add current task. Please add with -j flag");
+		console.log('   Error: You didn\'t add current task. Please add with -j flag');
 		process.exit();
 	}
 
 	const task = await getTask();	
 
 	if (!task?.id) {
-		console.log("Error: Task not found");
+		console.log('Error: Task not found');
 		process.exit();
 	}
 
 	if (args['--comment'] && !args['--merge']) {
-		console.log("   Error: You can't create comment without merge. Please use -m flag");
+		console.log('   Error: You can\'t create comment without merge. Please use -m flag');
 		process.exit();
 	}
 	if (args['--merge']){

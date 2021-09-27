@@ -1,7 +1,7 @@
-import getVariables from "./variables";
+import getVariables from './variables';
 import fetch from 'node-fetch';
 
-type GitTaskType = {web_url: string, state: string}
+type GitTaskType = {web_url: string; state: string}
 const getMRs = async () => {
 	const { sourceBranch, project, gitlabToken } = await getVariables();
 
@@ -17,7 +17,7 @@ const getMRs = async () => {
 	const mergeRequests = MRsBody.map(({web_url, state}, i) => (`${i + 1}. ${web_url} (${state})`));
 
 	if (!MRsBody) {
-		console.log("Can't get merge requests");
+		console.log('Can\'t get merge requests');
 		process.exit();
 	}
 	if (!MRsBody.length) return ['Merge requests for this task not found'];

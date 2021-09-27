@@ -100,7 +100,7 @@ const settingApp = async () => {
 	const { defaultProject } = await prompt([{
 		type: 'list',
 		name: 'defaultProject',
-		message: `Default project:`,
+		message: 'Default project:',
 		choices: config.gitlabProjects.map((project) => project.fullName),
 		default: config.defaultProject
 	}]);
