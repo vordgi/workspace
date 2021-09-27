@@ -21,7 +21,7 @@ const settingApp = async () => {
 			type: 'input',
 			name: 'token',
 			message: 'Jira token:',
-			default: config.jira.token
+			default: config.jira.token,
 		},
 	]);
 
@@ -62,11 +62,6 @@ const settingApp = async () => {
 				name: 'id',
 				message: 'Gitlab project id:',
 				default: project.id
-			},{
-				type: 'input',
-				name: 'isDefault',
-				message: 'Gitlab project is default:',
-				default: project.isDefault
 			},
 		]);
 		gitlabProjects.push(gitlabProject);
@@ -101,9 +96,21 @@ const settingApp = async () => {
 		}]);
 		addProject = createProject.addProject;
 		gitlabProjects.push(gitlabProject);
-	}	
+	}
+	const { defaultProject } = await prompt([{
+		type: 'list',
+		name: 'defaultProject',
+		message: `Default project:`,
+		choices: config.gitlabProjects.map((project) => project.fullName),
+		default: config.defaultProject
+	}]);
     
-	await cacache.put('/tmp/ws', 'ws-config', JSON.stringify({jira: jiraConfig, gitlab: gitlabConfig, gitlabProjects}, null, 2));
+	await cacache.put('/tmp/ws', 'ws-config', JSON.stringify({
+		jira: jiraConfig,
+		gitlab: gitlabConfig,
+		gitlabProjects,
+		defaultProject
+	}, null, 2));
 	console.log('Saved');
 };
 

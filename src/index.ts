@@ -1,14 +1,8 @@
 #! /usr/bin/env node
-/* eslint-disable @typescript-eslint/no-var-requires */
+
 import settingApp from './settings';
 
 const command = process.argv[2];
-
-// const commands = ['--help', '-h', 'work', 'report', 'configure', 'c'];
-// if (!commands.includes(command)){
-// 	console.log('Unknown command. Please write -h for see commands');
-// 	process.exit();
-// }
 
 (async () => {
 	if (command === '--help' || command === '-h') {

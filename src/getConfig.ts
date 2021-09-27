@@ -36,6 +36,7 @@ const getConfig = async () => {
 	const {data} = await cacache.get('/tmp/ws', 'ws-config');
 	
 	const cachedConfig = JSON.parse(data.toString());
+	
 	if (cachedConfig?.jira) return cachedConfig as ConfigType;
 	console.log('Please configure application.');
 	process.exit();	

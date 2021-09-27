@@ -1,6 +1,6 @@
 {
   "name": "wrsp",
-  "version": "3.1.9",
+  "version": "3.2.0",
   "description": "Workspace - CLI to improve DX when working with gitlab + jira",
   "main": "./build/src/index.js",
   "bin": "./build/src/index.js",

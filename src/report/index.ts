@@ -38,7 +38,7 @@ const report = async () => {
 		process.exit();
 	}
 	if (args['--variant'] === 'points') {
-		console.log('   Coming soon');		
+		console.log('   Coming soon');
 		process.exit();
 	}
 };

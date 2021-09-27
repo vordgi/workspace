@@ -34,7 +34,7 @@ const getProject = (config: ConfigType) => {
 			process.exit();
 		}
 	} else {
-		const configProject = config.gitlabProjects.find(({isDefault}) => !!isDefault);
+		const configProject = config.gitlabProjects.find(({fullName}) => fullName === config.defaultProject);
 		if (configProject) project = configProject;
 		else {
 			console.log("   Error: You didn't add default project. Please add it into config");

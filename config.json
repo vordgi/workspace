@@ -1,18 +1,24 @@
 {
+	"jira": {
+		"email": "example@email.com",
+		"name": "vordgi",
+		"token": "your_jira_token"
+	},
+	"gitlab": {
+		"token": "your_gitlab_token"
+	},
 	"gitlabProjects": [
 		{
 			"shortName": "pfn",
 			"fullName": "project-full-name",
-			"id": 11111111,
+			"id": 11111111
+		},
+		{
+			"shortName": "ws",
+			"fullName": "workspace",
+			"id": 99999999,
 			"isDefault": true
 		}
 	],
-	"gitlab": {
-		"token": "private_token"
-	},
-	"jira": {
-		"name": "worktech",
-		"token": "jira_token",
-		"email": "email@gmail.com"
-	}
+	"defaultProject": "workspace"
 }

@@ -33,11 +33,38 @@ $ wrsp c
         * Gitlab project full name - полное имя проекта для утилиты (напр. **workspace**)
         * Gitlab project short name - короткое имя проекта (напр. **w**)
         * Gitlab project id - id проекта
-        * Gitlab project is default - будет ли проект использоваться по умолчанию (без специальной опции)
+1. defaultProject - проект, который будет использоваться по умолчанию (без специальной опции).
 
 Также конфигурационный файл можно хранить отдельно в папке, из которой вы вызываете утилиту. Файл должен называться ```workspace.config.json```.
 
 Пример конфигурационного файла:
+
+```json
+{
+	"jira": {
+		"email": "example@email.com",
+		"name": "vordgi",
+		"token": "your_jira_token"
+	},
+	"gitlab": {
+		"token": "your_gitlab_token"
+	},
+	"gitlabProjects": [
+		{
+			"shortName": "pfn",
+			"fullName": "project-full-name",
+			"id": 11111111
+		},
+		{
+			"shortName": "ws",
+			"fullName": "workspace",
+			"id": 99999999,
+			"isDefault": true
+		}
+	],
+	"defaultProject": "workspace"
+}
+```
 
 ## Опции и команды
 
@@ -69,6 +96,24 @@ wrsp work -h
 '--comment', '-c' {Boolean} - use if you want create comment with link to current mr (only with -m flag)
 '--help', '-h' {Boolean} - help
 ```
+
+#### Комментарии к MR
+Для комментария в задаче должны быть указаны следующие поля:
+
+`creator.displayName` - автор задачи
+
+`assignee.displayName` - исполнитель задачи
+
+`issuetype.name` - тип задачи
+
+Сгенерированный комментарий выглядит следующим образом:
+
+> [WS-3](https://vordgi.atlassian.net/browse/WS-3)
+> creator: Savelyev Alexander
+> assignee: Savelyev Alexander
+> issue type: Task
+
+Если у вас есть вопросы и пожелания относительно комментариев - пожалуйста, оставьте обратную связь в [задаче](https://github.com/vordgi/workspace/issues/2).
 
 #### Примеры использования:
 
@@ -112,6 +157,9 @@ wrsp report -h
 `points` - Количество стори поинтов в определенный период времени. (*Вариант в разработке*)
 
 По умолчанию список задач логится в консиоль. При использовании опции `-w` - в папке, из которой вызвана утилита будет создан файл `report.txt`
+
+## Дополнительно
+Утилита находится в стадии активной разработки. Если у вас есть пожелания или возникли трудности - пожалуйста, создавайте задачи и оставляйте комментарии в [задачах проекта](https://github.com/vordgi/workspace/issues).
 
 ## Лицензия
 Workspace предоставляется в соответствии с условиями лицензии MIT.
