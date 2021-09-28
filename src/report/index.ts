@@ -25,8 +25,34 @@ const report = async () => {
 		console.log('   Error: Please, choose valid report variant. Use --help flag for more info');
 		process.exit();
 	}
+
+	let endDate = new Date();
+	if (args['--end-date']) {
+		const argEndDate = new Date(args['--end-date']);
+		if (Number.isNaN(argEndDate)) {
+			console.log('   Error: Please, write correct end date (f.e. 2021-12-21)');
+			process.exit();
+		} else {
+			endDate = argEndDate;
+		}
+	}
+
+	const curDate = new Date();
+	curDate.setMonth(curDate.getMonth() - 1);
+	let startDate = curDate;
+	if (args['--start-date']) {
+		const argStartDate = new Date(args['--start-date']);
+		if (Number.isNaN(argStartDate)) {
+			console.log('   Error: Please, write correct start date (f.e. 2021-12-21)');
+			process.exit();
+		} else {
+			startDate = argStartDate;
+		}
+	}
+
+
 	if (args['--variant'] === 'list') {
-		const jiraTasks = await getTasks(variables);
+		const jiraTasks = await getTasks({...variables, startDate, endDate});
 		const tasksRow = jiraTasks.join(';\n') + '.';
 		if (args['--write']) {
 			fs.writeFileSync('./tasks.txt', tasksRow, {
