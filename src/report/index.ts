@@ -10,7 +10,9 @@ const report = async () => {
 	if (args['--help']) {
 		console.log(`
         '--variant', '-v' {String} - list | points
-        '--write', '-w' {Boolean} - write file in current folder instead logging.
+        '--write', '-w' {Boolean} - write file in current folder instead logging
+        '--start-date', '-s' {string} - start date (f.e. 2021-11-21, by default - exactly a month ago)
+        '--end-date', '-e' {string} - end date (f.e. 2021-12-21, by default - today date)
         '--help', '-h' {Boolean} - help
     `);
 		process.exit();
