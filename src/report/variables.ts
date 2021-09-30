@@ -2,13 +2,19 @@ import arg from 'arg';
 import getConfig from '../getConfig';
 
 export const args = arg({
-	'--variant': String,
 	'--help': Boolean,
+	'--variant': String,
 	'--write': Boolean,
+	'--start-date': String,
+	'--end-date': String,
+	'--field': [String],
 
+	'-h': '--help',
 	'-v': '--variant',
 	'-w': '--write',
-	'-h': '--help',
+	'-s': '--start-date',
+	'-e': '--end-date',
+	'-f': '--field',
 });
 
 const getVariables = async () => {
