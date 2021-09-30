@@ -1,6 +1,8 @@
 import fetch from 'node-fetch';
 
-type IssueType = {key: string; fields: {summary: string}}
+type ObjectType = {[key: string]: string | number | ObjectType}
+
+type IssueType = {key: string; fields: ObjectType}
 
 type JiraResponseType = {issues: IssueType[]; total: number; startAt: number}
 
@@ -9,9 +11,10 @@ type FetchTasks = (arg: {
 	jiraWorkspace: string;
 	jql: string;
 	startAt?: number;
+	fieldsKeys: string[];
 }) => Promise<JiraResponseType>
 
-const fetchTasks: FetchTasks = async ({authToken, jiraWorkspace, jql, startAt = 0}) => {
+const fetchTasks: FetchTasks = async ({authToken, jiraWorkspace, jql, startAt = 0, fieldsKeys}) => {
 	const jiraResp = await fetch(`https://${jiraWorkspace}.atlassian.net/rest/api/3/search`, {
 		headers: {
 			'accept': 'application/json,text/javascript,*/*',
@@ -22,10 +25,7 @@ const fetchTasks: FetchTasks = async ({authToken, jiraWorkspace, jql, startAt = 
 		body: JSON.stringify({
 			jql,
 			maxResults: 100,
-			fieldsByKeys: false,
-			fields: [
-				'summary',
-			],
+			fields: fieldsKeys,
 			startAt
 		})
 	});

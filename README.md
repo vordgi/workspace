@@ -152,8 +152,9 @@ wrsp report -h
 ```txt
 '--variant', '-v' {String} - list | points
 '--write', '-w' {Boolean} - write file in current folder instead logging.
-'--start-date', '-s' {string} - start date (f.e. 2021-11-21, by default - exactly a month ago)
-'--end-date', '-e' {string} - end date (f.e. 2021-12-21, by default - today date)
+'--start-date', '-s' {String} - start date (f.e. 2021-11-21, by default - exactly a month ago)
+'--end-date', '-e' {String} - end date (f.e. 2021-12-21, by default - today date)
+'--field', '-f' {String[]} - field key (f.e. ['summary', 'reporter.displayName'], by default - ['summary'])
 '--help', '-h' {Boolean} - help
 ```
 
@@ -179,6 +180,17 @@ wrsp report -v list -s 2021-01-01 -e 2021-03-31 -w
 wrsp report -v list -s 2021-01-01 -w
 ```
 Утилита создаст файл (`-w`) в папке, из которой были вызвана команда со списком всех задач, выполненных вами в этом году (`-s 2021-01-01`).
+
+```bash
+wrsp report -v list -f summary -f reporter.displayName
+```
+Утилита выведет в консоль список выполненных вами задач в последний месяц с описанием (`-f summary`) и автором (`-f reporter.displayName`)
+```bash
+WRSP-43 Add start and end dates / Savelyev Alexander
+WRSP-44 Add fields option / Savelyev Alexander
+...
+WRSP-80 Something / Collaborator Name
+```
 
 ## Дополнительно
 Утилита находится в стадии активной разработки. Если у вас есть пожелания или возникли трудности - пожалуйста, создавайте задачи и оставляйте комментарии в [задачах проекта](https://github.com/vordgi/workspace/issues).

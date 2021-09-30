@@ -9,12 +9,13 @@ const report = async () => {
 
 	if (args['--help']) {
 		console.log(`
-        '--variant', '-v' {String} - list | points
-        '--write', '-w' {Boolean} - write file in current folder instead logging
-        '--start-date', '-s' {string} - start date (f.e. 2021-11-21, by default - exactly a month ago)
-        '--end-date', '-e' {string} - end date (f.e. 2021-12-21, by default - today date)
-        '--help', '-h' {Boolean} - help
-    `);
+		'--variant', '-v' {String} - list | points
+		'--write', '-w' {Boolean} - write file in current folder instead logging
+		'--start-date', '-s' {String} - start date (f.e. 2021-11-21, by default - exactly a month ago)
+		'--end-date', '-e' {String} - end date (f.e. 2021-12-21, by default - today date)
+		'--field', '-f' {String[]} - field key (f.e. ['summary', 'reporter.displayName'], by default - ['summary'])
+		'--help', '-h' {Boolean} - help
+	`);
 		process.exit();
 	}
 
@@ -52,9 +53,8 @@ const report = async () => {
 		}
 	}
 
-
 	if (args['--variant'] === 'list') {
-		const jiraTasks = await getTasks({...variables, startDate, endDate});
+		const jiraTasks = await getTasks({...variables, startDate, endDate, fields: args['--field']});
 		const tasksRow = jiraTasks.join(';\n') + '.';
 		if (args['--write']) {
 			fs.writeFileSync('./tasks.txt', tasksRow, {

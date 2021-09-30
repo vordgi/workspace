@@ -7,12 +7,14 @@ export const args = arg({
 	'--write': Boolean,
 	'--start-date': String,
 	'--end-date': String,
+	'--field': [String],
 
 	'-h': '--help',
 	'-v': '--variant',
 	'-w': '--write',
 	'-s': '--start-date',
 	'-e': '--end-date',
+	'-f': '--field',
 });
 
 const getVariables = async () => {
