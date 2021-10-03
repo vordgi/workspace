@@ -2,6 +2,7 @@
 
 import saveLocalConfig from './saveLocalConfig';
 import settingApp from './settings';
+import pkg from '../package.json';
 
 const command = process.argv[2];
 
@@ -9,11 +10,17 @@ const command = process.argv[2];
 	if (command === '--help' || command === '-h') {
 		console.log(`
 		'--help', '-h' {Boolean} - help - view commands and args
+		'--version', '-v' {Boolean} - check package version
 		'configure', 'c' {Boolean} - configure workspace
 		'save' {Boolean} - save base configuration (workspace.base.json) globally
 		'work' {Boolean} - work with tasks in jira and git
 		'report' {Boolean} - get reports
 	`);
+		process.exit();
+	}
+
+	if (command === '--version' || command === '-v') {
+		console.log(pkg.version);
 		process.exit();
 	}
 
