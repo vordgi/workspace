@@ -1,5 +1,6 @@
 #! /usr/bin/env node
 
+import saveLocalConfig from './saveLocalConfig';
 import settingApp from './settings';
 
 const command = process.argv[2];
@@ -8,12 +9,19 @@ const command = process.argv[2];
 	if (command === '--help' || command === '-h') {
 		console.log(`
 		'--help', '-h' {Boolean} - help - view commands and args
-		'report' {Boolean} - get reports
 		'configure', 'c' {Boolean} - configure workspace
+		'save' {Boolean} - save base configuration (workspace.base.json) globally
 		'work' {Boolean} - work with tasks in jira and git
+		'report' {Boolean} - get reports
 	`);
 		process.exit();
 	}
+
+	if (command === 'save') {
+		await saveLocalConfig();
+		process.exit();
+	}
+
 	if (command === 'report') {
 		const { default: report } = await import('./report');
 		await report();
@@ -31,4 +39,3 @@ const command = process.argv[2];
 	const { default: work } = await import('./work');
 	await work();
 })();
-

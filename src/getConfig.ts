@@ -20,6 +20,19 @@ const checkConfig = (config:Partial<ConfigType>) => {
 	});
 };
 
+export const getLocalConfig = () => {
+	const customConfigPath = path.resolve('workspace.base.json');
+	if (!fs.existsSync(customConfigPath)) {
+		console.log(`
+	Error Local configuration file not found. Please create "workspace.base.json" file in current directory.
+`);
+		process.exit();	
+	}
+	const customConfig:Partial<ConfigType> = JSON.parse(fs.readFileSync(customConfigPath, 'utf8'));
+	checkConfig(customConfig);
+	return customConfig as ConfigType;
+};
+
 const getConfig = async () => {
 	const customConfigPath = path.resolve('workspace.config.json');
 	if (fs.existsSync(customConfigPath)) {

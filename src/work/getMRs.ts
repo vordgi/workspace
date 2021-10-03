@@ -10,7 +10,7 @@ const getMRs = async () => {
 		headers: {
 			'PRIVATE-TOKEN': gitlabToken,
 			'Content-Type': 'application/json'
-		} as {[key:string]: string},
+		},
 	});
 
 	const MRsBody: GitTaskType[] = await MRsResp.json();
