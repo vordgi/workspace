@@ -39,10 +39,12 @@ const command = process.argv[2];
 		await settingApp();
 		process.exit();
 	}
+
 	if (command === 'report') {
 		await settingApp();
 		process.exit();
 	}
+
 	const { default: work } = await import('./work');
 	await work();
 })();
