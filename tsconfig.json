@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "baseUrl": ".",
-        "outDir": "./build",
+        "outDir": "./dist",
         "allowJs": true,
         "alwaysStrict": true,
         "esModuleInterop": true,
