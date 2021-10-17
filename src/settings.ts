@@ -101,7 +101,7 @@ const settingApp = async () => {
 		type: 'list',
 		name: 'defaultProject',
 		message: 'Default project:',
-		choices: config.gitlabProjects.map((project) => project.fullName),
+		choices: gitlabProjects.map((project) => project.fullName),
 		default: config.defaultProject
 	}]);
     
