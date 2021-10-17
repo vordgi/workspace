@@ -58,8 +58,7 @@ $ wrsp c
 		{
 			"shortName": "ws",
 			"fullName": "workspace",
-			"id": 99999999,
-			"isDefault": true
+			"id": 99999999
 		}
 	],
 	"defaultProject": "workspace"
