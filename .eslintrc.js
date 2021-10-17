@@ -17,23 +17,12 @@ module.exports = {
 		'@typescript-eslint'
 	],
 	'rules': {
-		'indent': [
-			'error',
-			'tab'
-		],
-		'linebreak-style': [
-			'error',
-			'unix'
-		],
-		'quotes': [
-			'error',
-			'single'
-		],
-		'semi': [
-			'error',
-			'always'
-		],
-		'@typescript-eslint/member-delimiter-style': ['error', {
+		'indent': [0, 'tab'],
+		'linebreak-style': [0, 'unix'],
+		'quotes': [0, 'single'],
+		'semi': [0, 'always'],
+		'@typescript-eslint/explicit-module-boundary-types': 0,
+		'@typescript-eslint/member-delimiter-style': [0, {
 			'multiline': {
 				'delimiter': 'semi',
 				'requireLast': true
