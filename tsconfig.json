@@ -2,7 +2,6 @@
     "compilerOptions": {
         "baseUrl": ".",
         "outDir": "./dist",
-        "allowJs": true,
         "alwaysStrict": true,
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
@@ -18,8 +17,8 @@
         "resolveJsonModule": true,
         "skipLibCheck": true,
         "strict": true,
-        "target": "esnext",
+        "target": "esnext"
     },
-    "exclude": ["node_modules"],
-    "include": ["src/**/*.ts", "config.json"],
+    "exclude": ["node_modules", "dist"],
+    "include": ["src/**/*.ts"],
 }

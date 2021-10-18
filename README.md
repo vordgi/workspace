@@ -74,7 +74,6 @@ wrsp -h
 ```
 ```txt
 '--help', '-h' {Boolean} - help - view commands and args
-'--version', '-v' {Boolean} - check package version
 'configure', 'c' {Boolean} - configure workspace
 'save' {Boolean} - save base configuration (workspace.base.json) globally
 'work' {Boolean} - work with tasks in jira and git
