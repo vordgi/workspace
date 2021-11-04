@@ -52,7 +52,7 @@ const work = async () => {
 	Jira: https://${jiraWorkspace}.atlassian.net/browse/${args['--jira-task']?.toLowerCase()} (${task.fields.status.name}).
 
 	Gitlab:
-	${mergeRequests.map(el => `${el}`).join(';\n')}.
+	${mergeRequests.map(el => `${el}`).join(';\n\t')}.
 `);
 		process.exit();
 	}
