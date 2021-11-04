@@ -27,7 +27,7 @@ const work = async () => {
 		process.exit();
 	}
 
-	const task = await getTask();	
+	const task = await getTask();
 
 	if (!task?.id) {
 		console.log('\n\tError: Task not found\n');

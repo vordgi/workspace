@@ -1,5 +1,6 @@
 import getVariables from './variables';
 import fetch from 'node-fetch';
+import checkBranch from './checkBranch';
 
 interface JiraTaskType {
 	fields: {
@@ -12,6 +13,9 @@ interface JiraTaskType {
 }
 const createMR = async (jiraTaskObj:JiraTaskType) => {
 	const { jiraTask, sourceBranch, jiraWorkspace, project, gitlabToken, targetBranch } = await getVariables();
+	await checkBranch(sourceBranch as string)
+	await checkBranch(targetBranch)
+
 	const mergeBody = {
 		source_branch: sourceBranch?.toLowerCase(),
 		target_branch: targetBranch || 'master',
@@ -33,9 +37,9 @@ issue type: ${jiraTaskObj.fields.issuetype.name}`
 		} as {[key:string]: string},
 		body: JSON.stringify(mergeBody)
 	});
-	
+
 	const MRBody = await MRResp.json();
-	
+
 	if (MRBody.web_url) {
 		console.log(`MR: ${MRBody.web_url}`);
 	} else {
