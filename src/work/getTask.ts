@@ -12,6 +12,12 @@ const getTask = async () => {
 		'method': 'GET',
 	});
 	const jiraData = await jiraResp.json();
+
+	if (jiraData.errorMessages) {
+		console.log(`\n\tError: Can't get jira task. ${jiraData.errorMessages.join(', ')}\n`);
+		process.exit();
+	}
+
 	return jiraData;
 };
 

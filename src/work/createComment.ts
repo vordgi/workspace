@@ -45,10 +45,14 @@ const createComment = async (mrUrl: string) => {
 		'body': getBody(mrUrl),
 		'method': 'POST',
 	});
-	if (jiraResp.ok) {
-		console.log('Comment added');
+	if (!jiraResp.ok) {
+		const jiraData = await jiraResp.json();
+		if (jiraData.errorMessages) {
+			console.log(`\n\tError: Can't get jira task. ${jiraData.errorMessages.join(', ')}\n`);
+			process.exit();
+		}
 	} else {
-		console.log('Can\'t write comment');
+		console.log('Comment added');
 	}
 };
 

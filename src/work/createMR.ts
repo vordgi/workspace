@@ -39,7 +39,7 @@ issue type: ${jiraTaskObj.fields.issuetype.name}`
 	if (MRBody.web_url) {
 		console.log(`MR: ${MRBody.web_url}`);
 	} else {
-		console.log('Can\'t create merge');
+		console.log(`\n\tError: Can't create merge. ${MRBody.error_description}\n`);
 		process.exit();
 	}
 	return MRBody;

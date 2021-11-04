@@ -111,7 +111,7 @@ const settingApp = async () => {
 		gitlabProjects,
 		defaultProject
 	}, null, 2));
-	console.log('Saved');
+	console.log('\n\tSaved\n');
 };
 
 export default settingApp;

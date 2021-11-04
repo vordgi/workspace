@@ -30,7 +30,8 @@ const getTasks: GetTasks = async ({authToken, jiraWorkspace, startDate, endDate,
 			const [key, ...subkeys] = field.split('.');
 			const value = subkeys.reduce((acc, subkey) => {
 				if (typeof acc !== 'object') {
-					throw new Error (`Invalid field ${field}`);
+					console.log(`\n\tError: Invalid field ${field}\n`);
+					process.exit()
 				}
 				return acc[subkey];
 			}, respFields[key]);

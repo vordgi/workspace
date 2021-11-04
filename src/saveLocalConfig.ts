@@ -14,7 +14,7 @@ const saveLocalConfig = async () => {
 	}]);
 	if (success){
 		await cacache.put('/tmp/ws', 'ws-config', JSON.stringify(config, null, 2));
-		console.log('Saved. For update configration run "wrsp c"');
+		console.log('\n\tSaved. For update configration run "wrsp c"\n');
 	}
 };
 

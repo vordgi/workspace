@@ -4,7 +4,9 @@ type ObjectType = {[key: string]: string | number | ObjectType}
 
 type IssueType = {key: string; fields: ObjectType}
 
-type JiraResponseType = {issues: IssueType[]; total: number; startAt: number}
+type JiraResponseType = {
+	issues: IssueType[]; total: number; startAt: number; errorMessages?: undefined
+}
 
 type FetchTasks = (arg: {
 	authToken: string;
@@ -29,7 +31,11 @@ const fetchTasks: FetchTasks = async ({authToken, jiraWorkspace, jql, startAt = 
 			startAt
 		})
 	});
-	const jiraData: JiraResponseType = await jiraResp.json();
+	const jiraData: JiraResponseType | {errorMessages: string[]} = await jiraResp.json();
+	if (jiraData.errorMessages) {
+		console.log(`\n\tError: Can't get jira task. ${jiraData.errorMessages.join(', ')}\n`);
+		process.exit();
+	}
 	return jiraData;
 };
 
