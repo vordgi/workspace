@@ -11,12 +11,14 @@
 		{
 			"shortName": "pfn",
 			"fullName": "project-full-name",
-			"id": 11111111
+			"id": 11111111,
+			"mainBranch": "master"
 		},
 		{
 			"shortName": "ws",
 			"fullName": "workspace",
-			"id": 99999999
+			"id": 99999999,
+			"mainBranch": "main"
 		}
 	],
 	"defaultProject": "workspace"

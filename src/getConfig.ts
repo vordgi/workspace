@@ -12,7 +12,7 @@ const checkConfig = (config:Partial<ConfigType>) => {
 		process.exit();
 	}
 	config.gitlabProjects?.forEach((project, i) => {
-		configError = !project.fullName || !project.id || !project.shortName;
+		configError = !!Object.values(project).find(value => !value);
 		if (configError) {
 			console.log(`\n\tError: Invalid gitlabProjects[${i}] config\n`);
 			process.exit();

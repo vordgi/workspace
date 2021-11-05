@@ -1,10 +1,40 @@
+import type { GitlabProject } from './types/gitlab';
 import inquirer from 'inquirer';
-import getConfig from './getConfig';
 import cacache from 'cacache';
+import getConfig from './getConfig';
+
+const prompt = inquirer.createPromptModule();
+
+const askGitlabProject = async (defaultData?: GitlabProject) => {
+	const gitlabProject = await prompt([
+		{
+			type: 'input',
+			name: 'fullName',
+			message: 'Gitlab project full name:',
+			default: defaultData?.fullName,
+		}, {
+			type: 'input',
+			name: 'shortName',
+			message: 'Gitlab project short name:',
+			default: defaultData?.shortName,
+		}, {
+			type: 'input',
+			name: 'id',
+			message: 'Gitlab project id:',
+			default: defaultData?.id,
+		}, {
+			type: 'input',
+			name: 'mainBranch',
+			message: 'Project main branch:',
+			default: defaultData === undefined ? 'master' : defaultData.mainBranch,
+		},
+	]);
+
+	return gitlabProject
+}
 
 const settingApp = async () => {
 	const config = await getConfig();
-	const prompt = inquirer.createPromptModule();
 
 	const jiraConfig = await prompt([
 		{
@@ -12,12 +42,12 @@ const settingApp = async () => {
 			name: 'email',
 			message: 'Jira email:',
 			default: config.jira.email
-		},{
+		}, {
 			type: 'input',
 			name: 'name',
 			message: 'Jira workspace name:',
 			default: config.jira.name
-		},{
+		}, {
 			type: 'input',
 			name: 'token',
 			message: 'Jira token:',
@@ -46,24 +76,7 @@ const settingApp = async () => {
 			continue;
 		}
 		if (method === 'remove') continue;
-		const gitlabProject = await prompt([
-			{
-				type: 'input',
-				name: 'fullName',
-				message: 'Gitlab project full name:',
-				default: project.fullName
-			},{
-				type: 'input',
-				name: 'shortName',
-				message: 'Gitlab project short name:',
-				default: project.shortName
-			},{
-				type: 'input',
-				name: 'id',
-				message: 'Gitlab project id:',
-				default: project.id
-			},
-		]);
+		const gitlabProject = await askGitlabProject(project)
 		gitlabProjects.push(gitlabProject);
 	}
 	let {addProject} = await prompt([{
@@ -73,21 +86,7 @@ const settingApp = async () => {
 		default: false
 	}]);
 	while (addProject) {
-		const gitlabProject = await prompt([
-			{
-				type: 'input',
-				name: 'fullName',
-				message: 'Gitlab project full name:',
-			},{
-				type: 'input',
-				name: 'shortName',
-				message: 'Gitlab project short name:',
-			},{
-				type: 'input',
-				name: 'id',
-				message: 'Gitlab project id:',
-			},
-		]);
+		const gitlabProject = await askGitlabProject()
 		const createProject = await prompt([{
 			type: 'confirm',
 			name: 'addProject',

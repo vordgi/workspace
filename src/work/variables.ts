@@ -47,15 +47,16 @@ const getVariables = async () => {
 	const config = await getConfig();
 
 	const authToken = Buffer.from(`${config.jira.email}:${config.jira.token}`).toString('base64');
+	const project = getProject(config)
 	const variables = {
 		authToken,
 		jiraWorkspace: config.jira.name,
 		gitlabToken: config.gitlab.token,
 		jiraTask: args['--jira-task'],
-		project: getProject(config),
+		project,
 		merge: args['--merge'],
 		comment: args['--comment'],
-		targetBranch: args['--target-branch'] || 'master',
+		targetBranch: args['--target-branch'] || project.mainBranch,
 		sourceBranch: args['--source-branch'] || args['--jira-task'],
 	};
 	return variables;
