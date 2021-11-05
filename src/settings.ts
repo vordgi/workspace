@@ -11,23 +11,23 @@ const askGitlabProject = async (defaultData?: GitlabProject) => {
 			type: 'input',
 			name: 'fullName',
 			message: 'Gitlab project full name:',
-			default: defaultData?.fullName,
+			default: defaultData?.fullName
 		}, {
 			type: 'input',
 			name: 'shortName',
 			message: 'Gitlab project short name:',
-			default: defaultData?.shortName,
+			default: defaultData?.shortName
 		}, {
 			type: 'input',
 			name: 'id',
 			message: 'Gitlab project id:',
-			default: defaultData?.id,
+			default: defaultData?.id
 		}, {
 			type: 'input',
 			name: 'mainBranch',
 			message: 'Project main branch:',
-			default: defaultData === undefined ? 'master' : defaultData.mainBranch,
-		},
+			default: defaultData === undefined ? 'master' : defaultData.mainBranch
+		}
 	]);
 
 	return gitlabProject
@@ -51,8 +51,8 @@ const settingApp = async () => {
 			type: 'input',
 			name: 'token',
 			message: 'Jira token:',
-			default: config.jira.token,
-		},
+			default: config.jira.token
+		}
 	]);
 
 	const gitlabConfig = await prompt([{
@@ -64,7 +64,7 @@ const settingApp = async () => {
 
 	const gitlabProjects = [];
 	for (const project of config.gitlabProjects) {
-		const {method} = await prompt([{
+		const { method } = await prompt([{
 			type: 'list',
 			name: 'method',
 			message: `Gitlab project "${project.fullName}"`,
@@ -79,7 +79,7 @@ const settingApp = async () => {
 		const gitlabProject = await askGitlabProject(project)
 		gitlabProjects.push(gitlabProject);
 	}
-	let {addProject} = await prompt([{
+	let { addProject } = await prompt([{
 		type: 'confirm',
 		name: 'addProject',
 		message: 'Add project (N):',
@@ -103,7 +103,7 @@ const settingApp = async () => {
 		choices: gitlabProjects.map((project) => project.fullName),
 		default: config.defaultProject
 	}]);
-    
+
 	await cacache.put('/tmp/ws', 'ws-config', JSON.stringify({
 		jira: jiraConfig,
 		gitlab: gitlabConfig,

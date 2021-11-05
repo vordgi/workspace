@@ -4,7 +4,7 @@ import inquirer from 'inquirer';
 const checkBranch = async (branch:string) => {
     const prompt = inquirer.createPromptModule();
     const branchData = await getGitlabBranch(branch);
-    
+
     if (branchData.merged) {
         const { isOk } = await prompt([{
             type: 'confirm',

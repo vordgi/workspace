@@ -14,7 +14,7 @@ const getGitlabBranch: GetGitlabBranch = async (branch) => {
 		headers: {
 			'PRIVATE-TOKEN': gitlabToken,
 			'Content-Type': 'application/json'
-		},
+		}
 	});
 
 	const branchBody: Branch = await branchResp.json();

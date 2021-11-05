@@ -26,7 +26,7 @@ const report = async () => {
 		process.exit();
 	}
 
-	if (args['--variant'] !== 'list' && args['--variant'] !== 'points' ) {
+	if (args['--variant'] !== 'list' && args['--variant'] !== 'points') {
 		console.log('\n\tError: Please, choose valid report variant. Use --help flag for more info\n');
 		process.exit();
 	}
@@ -56,7 +56,7 @@ const report = async () => {
 	}
 
 	if (args['--variant'] === 'list') {
-		const jiraTasks = await getTasks({...variables, startDate, endDate, fields: args['--field']});
+		const jiraTasks = await getTasks({ ...variables, startDate, endDate, fields: args['--field'] });
 		const tasksRow = jiraTasks.join(';\n') + '.';
 		if (args['--write']) {
 			fs.writeFileSync('./tasks.txt', tasksRow, {

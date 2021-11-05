@@ -24,7 +24,7 @@ export const getLocalConfig = () => {
 	const customConfigPath = path.resolve('workspace.base.json');
 	if (!fs.existsSync(customConfigPath)) {
 		console.log(`\n\tError: Local configuration file not found. Please create "workspace.base.json" file in current directory.\n`);
-		process.exit();	
+		process.exit();
 	}
 	const customConfig:Partial<ConfigType> = JSON.parse(fs.readFileSync(customConfigPath, 'utf8'));
 	checkConfig(customConfig);
@@ -37,20 +37,20 @@ const getConfig = async () => {
 		const customConfig:Partial<ConfigType> = JSON.parse(fs.readFileSync(customConfigPath, 'utf8'));
 		checkConfig(customConfig);
 		return customConfig as ConfigType;
-	} 
+	}
 	const localConfigPath = path.join(__dirname, '../config.local.json');
 	if (fs.existsSync(localConfigPath)) {
 		const customConfig:Partial<ConfigType> = JSON.parse(fs.readFileSync(localConfigPath, 'utf8'));
 		checkConfig(customConfig);
 		return customConfig as ConfigType;
 	}
-	const {data} = await cacache.get('/tmp/ws', 'ws-config');
-	
+	const { data } = await cacache.get('/tmp/ws', 'ws-config');
+
 	const cachedConfig = JSON.parse(data.toString());
-	
+
 	if (cachedConfig?.jira) return cachedConfig as ConfigType;
 	console.log('\n\tError: Please configure application.\n');
-	process.exit();	
+	process.exit();
 };
 
 export default getConfig;

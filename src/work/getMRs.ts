@@ -10,17 +10,17 @@ const getMRs = async () => {
 		headers: {
 			'PRIVATE-TOKEN': gitlabToken,
 			'Content-Type': 'application/json'
-		},
+		}
 	});
 
 	const MRsBody: GitTaskType[] | {error_description: string} = await MRsResp.json();
-	
+
 	if (!Array.isArray(MRsBody)) {
 		console.log(`\n\tError: Can't get merge requests. ${MRsBody.error_description}\n`);
 		process.exit();
 	}
 
-	const mergeRequests = MRsBody.map(({web_url, state}, i) => (`${i + 1}. ${web_url} (${state})`));
+	const mergeRequests = MRsBody.map(({ web_url, state }, i) => (`${i + 1}. ${web_url} (${state})`));
 
 	if (!MRsBody.length) return ['Merge requests for this task not found'];
 	return mergeRequests;

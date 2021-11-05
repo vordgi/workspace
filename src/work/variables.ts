@@ -10,22 +10,21 @@ export const args = arg({
 	'--help': Boolean,
 	'--target-branch': String,
 	'--source-branch': String,
-    
+
 	'-m': '--merge',
 	'-c': '--comment',
 	'-j': '--jira-task',
 	'-p': '--project',
 	'-h': '--help',
 	'-t': '--target-branch',
-	'-s': '--source-branch',
+	'-s': '--source-branch'
 });
-
 
 const getProject = (config: ConfigType) => {
 	const argProject = args['--project'];
 	let project: GitlabProject;
 	if (argProject) {
-		const configProject =config.gitlabProjects.find(({shortName, fullName}) => (
+		const configProject = config.gitlabProjects.find(({ shortName, fullName }) => (
 			shortName === argProject || fullName === argProject
 		));
 		if (configProject) project = configProject;
@@ -34,7 +33,7 @@ const getProject = (config: ConfigType) => {
 			process.exit();
 		}
 	} else {
-		const configProject = config.gitlabProjects.find(({fullName}) => fullName === config.defaultProject);
+		const configProject = config.gitlabProjects.find(({ fullName }) => fullName === config.defaultProject);
 		if (configProject) project = configProject;
 		else {
 			console.log('\n\tError: You didn\'t add default project. Please add it into config\n');
@@ -57,7 +56,7 @@ const getVariables = async () => {
 		merge: args['--merge'],
 		comment: args['--comment'],
 		targetBranch: args['--target-branch'] || project.mainBranch,
-		sourceBranch: args['--source-branch'] || args['--jira-task'],
+		sourceBranch: args['--source-branch'] || args['--jira-task']
 	};
 	return variables;
 };

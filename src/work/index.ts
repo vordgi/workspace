@@ -38,15 +38,15 @@ const work = async () => {
 		console.log('\n\tError: You can\'t create comment without merge. Please use -m flag\n');
 		process.exit();
 	}
-	if (args['--merge']){
+	if (args['--merge']) {
 		const mr = await createMR(task);
-		if (args['--comment']){
+		if (args['--comment']) {
 			await createComment(mr.web_url);
 		}
 		process.exit();
 	}
 	if (args['--jira-task']) {
-		const {jiraWorkspace} = await getVariables();
+		const { jiraWorkspace } = await getVariables();
 		const mergeRequests = await getMRs();
 		console.log(`
 	Jira: https://${jiraWorkspace}.atlassian.net/browse/${args['--jira-task']?.toLowerCase()} (${task.fields.status.name}).

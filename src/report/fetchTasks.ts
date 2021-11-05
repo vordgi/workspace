@@ -16,12 +16,12 @@ type FetchTasks = (arg: {
 	fieldsKeys: string[];
 }) => Promise<JiraResponseType>
 
-const fetchTasks: FetchTasks = async ({authToken, jiraWorkspace, jql, startAt = 0, fieldsKeys}) => {
+const fetchTasks: FetchTasks = async ({ authToken, jiraWorkspace, jql, startAt = 0, fieldsKeys }) => {
 	const jiraResp = await fetch(`https://${jiraWorkspace}.atlassian.net/rest/api/3/search`, {
 		headers: {
-			'accept': 'application/json,text/javascript,*/*',
+			accept: 'application/json,text/javascript,*/*',
 			'content-type': 'application/json',
-			'Authorization': `Basic ${authToken}`,
+			Authorization: `Basic ${authToken}`
 		},
 		method: 'POST',
 		body: JSON.stringify({
