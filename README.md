@@ -33,6 +33,7 @@ $ wrsp c
         * Gitlab project full name - полное имя проекта для утилиты (напр. **workspace**)
         * Gitlab project short name - короткое имя проекта (напр. **w**)
         * Gitlab project id - id проекта
+        * Gitlab project main branch - основная ветка проекта, будет использоваться по умолчанию в качестве `target branch`
 1. defaultProject - проект, который будет использоваться по умолчанию (без специальной опции).
 
 Также конфигурационный файл можно хранить отдельно в папке, из которой вы вызываете утилиту. Файл должен называться `workspace.config.json`.
@@ -53,12 +54,14 @@ $ wrsp c
 		{
 			"shortName": "pfn",
 			"fullName": "project-full-name",
-			"id": 11111111
+			"id": 11111111,
+			"mainBranch": "master"
 		},
 		{
 			"shortName": "ws",
 			"fullName": "workspace",
-			"id": 99999999
+			"id": 99999999,
+			"mainBranch": "main"
 		}
 	],
 	"defaultProject": "workspace"

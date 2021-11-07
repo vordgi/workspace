@@ -14,16 +14,16 @@ export const args = arg({
 	'-w': '--write',
 	'-s': '--start-date',
 	'-e': '--end-date',
-	'-f': '--field',
+	'-f': '--field'
 });
 
 const getVariables = async () => {
 	const config = await getConfig();
-	
+
 	const authToken = Buffer.from(`${config.jira.email}:${config.jira.token}`).toString('base64');
 	const variables = {
 		authToken,
-		jiraWorkspace: config.jira.name,
+		jiraWorkspace: config.jira.name
 	};
 	return variables;
 };

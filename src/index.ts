@@ -5,15 +5,17 @@ import settingApp from './settings';
 
 const command = process.argv[2];
 
+const help = `
+	'--help', '-h' {Boolean} - help - view commands and args
+	'configure', 'c' {Boolean} - configure workspace
+	'save' {Boolean} - save base configuration (workspace.base.json) globally
+	'work' {Boolean} - work with tasks in jira and git
+	'report' {Boolean} - get reports
+`;
+
 (async () => {
 	if (command === '--help' || command === '-h') {
-		console.log(`
-		'--help', '-h' {Boolean} - help - view commands and args
-		'configure', 'c' {Boolean} - configure workspace
-		'save' {Boolean} - save base configuration (workspace.base.json) globally
-		'work' {Boolean} - work with tasks in jira and git
-		'report' {Boolean} - get reports
-	`);
+		console.log(help);
 		process.exit();
 	}
 
@@ -40,4 +42,6 @@ const command = process.argv[2];
 
 	const { default: work } = await import('./work');
 	await work();
+	console.log(`\n\tError: Unknown options. Please, use valid options: ${help}`);
+	process.exit();
 })();
